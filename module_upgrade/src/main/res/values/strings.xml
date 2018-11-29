@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">module_upgrade</string>
+
+    <string name="default_notification_channel_id" translatable="false">launcher_default_channel</string>
+    <string name="is_downing">downloading</string>
+    <string name="update_late">please try again later</string>
+    <string name="update_grade">update</string>
+    <string name="update_laste_version">already latest</string>
+    <string name="default_notification_channel_update_name" translatable="true">update</string>
+    <string name="default_notification_channel_name" translatable="true">default</string>
+    <string name="default_notification_update_channel_id" translatable="false">update_default_channel</string>
+
+</resources>

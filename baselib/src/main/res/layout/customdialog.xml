@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center" >
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/x112"
+        android:layout_marginEnd="@dimen/x112"
+        android:orientation="vertical">
+
+         <TextView
+            android:id="@+id/title"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:paddingBottom="@dimen/y100"
+             android:paddingTop="@dimen/y100"
+             android:text="string/activation_code_title"
+             android:textColor="@color/lg_text_black"
+             android:textSize="@dimen/x56" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/lg_text_black"
+            android:text="string/activation_code_content"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:textSize="@dimen/x44" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y120"
+            android:layout_marginBottom="@dimen/y80"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/confirm_btn"
+                android:layout_width="@dimen/x268"
+                android:layout_height="@dimen/y132"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@drawable/font_red_selector"
+                android:background="@drawable/btn_red_selector"
+                android:textSize="@dimen/x48"
+                android:text="@string/ok" />
+
+            <View
+                android:id="@+id/single_line"
+                android:layout_width="@dimen/x50"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/neutral_btn"
+                android:layout_width="@dimen/x268"
+                android:layout_height="@dimen/y132"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@drawable/font_red_selector"
+                android:background="@drawable/btn_red_selector"
+                android:textSize="@dimen/x48"
+                android:text="@string/ok" />
+
+            <View
+                android:id="@+id/second_line"
+                android:layout_width="@dimen/x50"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="@dimen/x268"
+                android:layout_height="@dimen/y132"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@drawable/font_black_selector"
+                android:background="@drawable/btn_gray_selector"
+                android:textSize="@dimen/x48"
+                android:text="@string/cancel" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

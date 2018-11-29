@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_notification_channel_id" translatable="false">launcher_default_channel</string>
+    <string name="scale_down_show_behavior">com.victor.baselib.behavior.ScaleDownShowBehavior</string>
+    <string name="behavior_sample_title">com.victor.baselib.behavior.SampleTitleBehavior</string>
+    <string name="behavior_uc_tab">com.victor.baselib.behavior.UcTabBehavior</string>
+
+    <string name="ok">好的</string>
+    <string name="net_setting">设置网络</string>
+    <string name="edit">修改</string>
+    <string name="finish">完成</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+
+</resources>

@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.victor.fingerprint" >
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <application android:allowBackup="true">
+
+        <activity android:name=".FingerprintActivity" android:theme="@style/TranslucentTheme"/>
+        <activity android:name=".FingerAndPasswordActivity" android:theme="@style/BlueTheme"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/action_settings" />
+    </application>
+</manifest>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/blue_light</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="lg_green">#68b82e</color>
+    <color name="black">#333333</color>
+    <color name="black_light">#666666</color>
+    <color name="gray">#c9c9c9</color>
+    <!-- 用于所有弹出框背景-->
+    <color name="dialog_bg">#660b0b0b</color>
+    <!-- 用于分割线 -->
+    <color name="divider_line">#e4e4e4</color>
+    <!-- 用于app界面背景 -->
+    <color name="app_bg">#f8f8f8</color>
+    <color name="bar_status">#DFDFDF</color>
+    <color name="title_bg">#FCFCFC</color>
+    <color name="blue_light">#3090FF</color>
+    <color name="text_sub">#C0C0C0</color>
+
+    <color name="lg_dialog_bg">#4D343434</color>
+    <color name="lg_red_light">#fc5439</color>
+    <color name="lg_text_black">#FF111322</color>
+    <!-- 按钮边框灰色-->
+    <color name="lg_frame_gray">#FFD7D7D7</color>
+    <color name="lg_text_gray">#FF999999</color>
+    <color name="lg_btn_gray_bg">#FFEEEEEE</color>
+    <color name="lg_divider_line_gray">#FF999999</color>
+    <color name="lg_gray_bg">#FFF6F6F6</color>
+</resources>

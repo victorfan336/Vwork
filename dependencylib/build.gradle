@@ -1,0 +1,92 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //google服务
+    /*api rootProject.ext.dependencies["firebase-messaging"]
+        api rootProject.ext.dependencies["firebase-jobdispatcher"]
+        api rootProject.ext.dependencies["firebase-crash"]
+        api (rootProject.ext.dependencies["crashlytics"]) {
+            transitive = true
+        }
+        api rootProject.ext.dependencies["firebase-core"]
+        api rootProject.ext.dependencies["firebase-analytics"]
+        api rootProject.ext.dependencies["firebase-perf"]
+        api rootProject.ext.dependencies["play-services-ads"]
+        */
+    // 系统控件
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["cardview"]
+    api rootProject.ext.dependencies["constraintlayout"]
+    // java8
+    api rootProject.ext.dependencies["stream"]
+
+    // rxjava and rxandroid
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxjava2"]
+
+    // 网络
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava"]
+
+    // dagger
+    api rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+
+    // butterknife注解
+    api rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife"]
+
+    //ARouter
+    api rootProject.ext.dependencies["arouter-api"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    // 图片控制
+    api rootProject.ext.dependencies["picasso"]
+    api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+
+    api rootProject.ext.dependencies["fresco"]
+    api rootProject.ext.dependencies["fresco-okhttp3"]
+    api rootProject.ext.dependencies["fresco-animated-gif"]
+    api rootProject.ext.dependencies["fresco-animated-webp"]
+    api rootProject.ext.dependencies["fresco-webpsupport"]
+
+    // 通讯
+    api rootProject.ext.dependencies["eventbus"]
+
+
+}

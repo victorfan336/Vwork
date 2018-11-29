@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sentinel HL Driverless VendorID=0x0529 ProductId=0x0003 -->
+    <usb-device vendor-id="13212" product-id="38" />
+    <usb-device vendor-id="17" product-id="30600"/>
+</resources>

@@ -1,0 +1,45 @@
+package com.victor.coordinatorlayout;
+
+import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.widget.Toolbar;
+
+import com.victor.baselib.ui.BaseActivity;
+
+import butterknife.BindView;
+
+/**
+ * @author fanwentao
+ * @Description
+ * @date 2018/6/26
+ */
+public class CollapsingActivity extends BaseActivity {
+
+    @BindView(R2.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbar;
+    @BindView(R2.id.toolbar)
+    Toolbar toolbar;
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_collapsing;
+    }
+
+    @Override
+    protected String setTitle() {
+        return "CollapsingActivity";
+    }
+
+    @Override
+    protected void initView() {
+        collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
+        collapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
+    }
+
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.victor.libzxing.view.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:inner_corner_color="@color/blue_light"
+        app:inner_corner_length="30dp"
+        app:inner_corner_width="5dp"
+        app:inner_height="200dp"
+        app:inner_margintop="120dp"
+        app:inner_scan_bitmap="@drawable/scan_light"
+        app:inner_scan_iscircle="false"
+        app:inner_scan_speed="10"
+        app:inner_width="200dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:id="@+id/scan_light_view"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_weight="1.0"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera_flashlight_off" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/scan_pic_view"
+                android:layout_width="0dp"
+                android:layout_height="28dp"
+                android:layout_weight="1.0"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera_select_pic2x" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/zbar_scan_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/transparent"
+            android:gravity="center_horizontal"
+            android:lineSpacingMultiplier="1.4"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/scanner_bottom_tip"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</FrameLayout>

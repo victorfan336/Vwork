@@ -1,0 +1,11 @@
+<resources>
+
+    <color name="blue_light">#3090FF</color>
+    <color name="white">#ffffff</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+
+</resources>
