@@ -16,9 +16,6 @@
 
 package com.victor.fingerprint;
 
-import com.victor.fingerprint.server.StoreBackend;
-import com.victor.fingerprint.server.StoreBackendImpl;
-
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,6 +25,9 @@ import android.preference.PreferenceManager;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.RequiresApi;
 import android.view.inputmethod.InputMethodManager;
+
+import com.victor.fingerprint.server.StoreBackend;
+import com.victor.fingerprint.server.StoreBackendImpl;
 
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
@@ -42,9 +42,7 @@ import dagger.Provides;
 /**
  * Dagger module for Fingerprint APIs.
  */
-@Module(
-        library = true,
-        injects = {FingerAndPasswordActivity.class}
+@Module(includes = {FingerAndPasswordActivity.class}
 )
 public class FingerprintModule {
 

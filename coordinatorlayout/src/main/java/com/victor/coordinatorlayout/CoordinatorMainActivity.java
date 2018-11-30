@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.victor.baselib.ui.BaseActivity;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.victor.baselib.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
+@Route(path = "/coordinator/main")
 public class CoordinatorMainActivity extends BaseActivity {
 
 
@@ -52,27 +54,27 @@ public class CoordinatorMainActivity extends BaseActivity {
 
     @OnClick(R2.id.action_bar)
     public void onActionBarClicked(View view) {
-        startActivity(CoordinatorActionBarActivity.class);
+        ARouter.getInstance().build("/coordinator/actionbar").navigation();
     }
 
     @OnClick(R2.id.tab_layout)
     public void onTabClicked(View view) {
-        startActivity(CoordinatorTabActivity.class);
+        ARouter.getInstance().build("/coordinator/tab").navigation();
     }
 
     @OnClick(R2.id.collapsing)
     public void onCollapsingClicked(View view) {
-        startActivity(CollapsingActivity.class);
+        ARouter.getInstance().build("/coordinator/collapsing").navigation();
     }
 
     @OnClick(R2.id.rotate)
     public void onRoatateClicked() {
-        startActivity(TitileActionBarActivity.class);
+        ARouter.getInstance().build("/coordinator/titlebar").navigation();
     }
 
     @OnClick(R2.id.uc_head)
     public void onUcHeadClicked() {
-        startActivity(UcHeadActivity.class);
+        ARouter.getInstance().build("/coordinator/uc").navigation();
     }
 
 

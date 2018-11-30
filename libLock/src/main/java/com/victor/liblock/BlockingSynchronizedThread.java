@@ -5,14 +5,9 @@ package com.victor.liblock;
  * @Description
  * @date 2018/7/9
  */
-import java.util.LinkedList;
+
 import java.util.Random;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * 用阻塞队列实现线程同步 LinkedBlockingQueue的使用

@@ -10,16 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.victor.baselib.ui.BaseFragment;
+import com.victor.baselib.base.BaseFragment;
 import com.victor.coordinatorlayout.CoordinatorMainActivity;
 import com.victor.coordinatorlayout.R2;
 import com.victor.libzxing.activity.ScannerActivity;
-
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

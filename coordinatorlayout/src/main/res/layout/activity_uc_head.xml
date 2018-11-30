@@ -31,42 +31,19 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_anchor="@+id/tab"
         app:layout_anchorGravity="bottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y210"
+        android:layout_height="@dimen/y150"
         android:background="@color/blue_light"
         android:gravity="center"
         android:text="Sample title"
         android:textColor="#ffffff"
         android:textSize="18sp"
-        android:paddingTop="18dp"
+        android:paddingTop="@dimen/y40"
         app:layout_behavior="@string/behavior_sample_title" />
-
-    <TableLayout
-        android:id="@+id/tab"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/colorAccent"
-        app:layout_anchor="@id/toolbar_layout"
-        app:layout_anchorGravity="bottom"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:paddingTop="18dp"
-        app:layout_behavior="@string/behavior_uc_tab" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/float_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_anchor="@id/recycler"
-        app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,22 +1,20 @@
 package com.victor.coordinatorlayout;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.victor.baselib.adapter.StringAdapter;
 import com.victor.baselib.adapter.ViewPagerAdapter;
-import com.victor.baselib.ui.BaseActivity;
+import com.victor.baselib.base.BaseActivity;
 import com.victor.baselib.ui.SimpleFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.TreeMap;
 
 import butterknife.BindView;
 
@@ -25,6 +23,7 @@ import butterknife.BindView;
  * @Description
  * @date 2018/6/29
  */
+@Route(path = "/coordinator/uc")
 public class UcHeadActivity extends BaseActivity {
 
     List<Fragment> mFragments;
@@ -54,8 +53,8 @@ public class UcHeadActivity extends BaseActivity {
             mFragments.add(listFragment);
         }
 
-        ViewPagerAdapter adapter =
-                new ViewPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
+//        ViewPagerAdapter adapter =
+//                new ViewPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
 //        viewpager.setAdapter(adapter);
 
         //  第三步：将ViewPager与TableLayout 绑定在一起

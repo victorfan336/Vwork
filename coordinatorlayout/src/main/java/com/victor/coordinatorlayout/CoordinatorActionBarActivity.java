@@ -6,8 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.victor.baselib.adapter.StringAdapter;
-import com.victor.baselib.ui.BaseActivity;
+import com.victor.baselib.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+@Route(path = "/coordinator/actionbar")
 public class CoordinatorActionBarActivity extends BaseActivity {
 
     @BindView(R2.id.recycler)

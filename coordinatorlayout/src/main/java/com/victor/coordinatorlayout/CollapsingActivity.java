@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 
-import com.victor.baselib.ui.BaseActivity;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.victor.baselib.base.BaseActivity;
 
 import butterknife.BindView;
 
@@ -13,6 +15,7 @@ import butterknife.BindView;
  * @Description
  * @date 2018/6/26
  */
+@Route(path = "/coordinator/collapsing")
 public class CollapsingActivity extends BaseActivity {
 
     @BindView(R2.id.collapsing_toolbar)

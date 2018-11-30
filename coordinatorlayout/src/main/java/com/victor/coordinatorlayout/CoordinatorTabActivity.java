@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.victor.baselib.adapter.ViewPagerAdapter;
-import com.victor.baselib.ui.BaseActivity;
+import com.victor.baselib.base.BaseActivity;
 import com.victor.baselib.ui.SimpleFragment;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ import butterknife.BindView;
  * @Description
  * @date 2018/6/25
  */
+@Route(path = "/coordinator/tab")
 public class CoordinatorTabActivity extends BaseActivity {
 
     @BindView(R2.id.collapsing_toolbar)

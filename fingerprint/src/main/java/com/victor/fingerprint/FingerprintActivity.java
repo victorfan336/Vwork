@@ -6,14 +6,10 @@ import android.os.Message;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.victor.baselib.ui.BaseActivity;
+import com.victor.baselib.base.BaseActivity;
 import com.victor.baselib.utils.ToastUtil;
-
-import java.util.PrimitiveIterator;
 
 /**
  * @author fanwentao

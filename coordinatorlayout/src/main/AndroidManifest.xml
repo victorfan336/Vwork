@@ -25,9 +25,6 @@
         <activity android:name=".CollapsingActivity"
             android:theme="@style/TranslucentTheme"
             />
-        <activity android:name=".RotateActivity"
-            android:theme="@style/TranslucentTheme"
-            />
         <activity android:name=".UcHeadActivity"
             android:theme="@style/TranslucentTheme"
             />

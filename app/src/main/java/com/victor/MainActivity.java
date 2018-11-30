@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.MenuItem;
-import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.ui.BaseFitsSystemWindowsActivity;
 import com.victor.coordinatorlayout.CoordinatorMainActivity;
 import com.victor.fingerprint.FingerAndPasswordActivity;
@@ -89,7 +89,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
             public void run() {
                 drawer.closeDrawers();
             }
-        }, 1000);
+        }, 700);
     }
 
     @Override
@@ -97,10 +97,11 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_coordinatorlayout:
-                startActivity(CoordinatorMainActivity.class);
+//                startActivity(CoordinatorMainActivity.class);
+                ARouter.getInstance().build("/coordinator/main").navigation();
                 break;
             case R.id.nav_fingerprint:
-                startActivity(FingerAndPasswordActivity.class);
+//                startActivity(FingerAndPasswordActivity.class);
                 break;
         }
 

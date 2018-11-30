@@ -6,7 +6,6 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.widget.ImageView;
 
-
 import com.victor.baselib.R;
 
 import java.lang.reflect.Method;

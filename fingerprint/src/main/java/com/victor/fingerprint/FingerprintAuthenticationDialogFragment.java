@@ -16,9 +16,6 @@
 
 package com.victor.fingerprint;
 
-import com.victor.fingerprint.server.StoreBackend;
-import com.victor.fingerprint.server.Transaction;
-
 import android.annotation.TargetApi;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -37,6 +34,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.victor.fingerprint.server.StoreBackend;
+import com.victor.fingerprint.server.Transaction;
 
 import java.io.IOException;
 import java.security.KeyFactory;

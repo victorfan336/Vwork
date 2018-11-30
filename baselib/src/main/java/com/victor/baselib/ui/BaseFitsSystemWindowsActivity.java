@@ -2,13 +2,11 @@ package com.victor.baselib.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+
+import com.victor.baselib.base.BaseActivity;
 
 /**
  * Created by ${victor fan} on 2018/5/23 0023.

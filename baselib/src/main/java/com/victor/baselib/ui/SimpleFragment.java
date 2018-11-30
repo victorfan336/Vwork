@@ -14,12 +14,12 @@ import android.widget.TextView;
 import com.victor.baselib.R;
 import com.victor.baselib.R2;
 import com.victor.baselib.adapter.StringAdapter;
+import com.victor.baselib.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import okhttp3.internal.Util;
 
 /**
  * @author fanwentao

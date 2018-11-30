@@ -1,18 +1,23 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 28
-
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.compileSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -28,7 +33,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     //google服务
@@ -51,6 +55,9 @@ dependencies {
     api rootProject.ext.dependencies["constraintlayout"]
     // java8
     api rootProject.ext.dependencies["stream"]
+    // 分包
+    api rootProject.ext.dependencies["multidex"]
+
 
     // rxjava and rxandroid
     api rootProject.ext.dependencies["rxandroid"]
@@ -65,10 +72,12 @@ dependencies {
     // dagger
     api rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+//    annotationProcessor rootProject.ext.dependencies["dagger-support"]
+//    annotationProcessor rootProject.ext.dependencies["dagger-android"]
 
     // butterknife注解
     api rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
     //ARouter
     api rootProject.ext.dependencies["arouter-api"]
@@ -88,5 +97,16 @@ dependencies {
     // 通讯
     api rootProject.ext.dependencies["eventbus"]
 
+    // bugly
+    api rootProject.ext.dependencies["bugly"]
+    api rootProject.ext.dependencies["bugly-native"]
 
+    // leakcannary
+    api rootProject.ext.dependencies["leakcannary-debug"]
+    //    rootProject.ext.dependencies["leakcannary-release"]
+    // shape代码生成库
+    api rootProject.ext.dependencies["background-lib"]
+    // 七牛
+    api rootProject.ext.dependencies["qiniu-sdk"]
+    api rootProject.ext.dependencies["qiniu-dns"]
 }

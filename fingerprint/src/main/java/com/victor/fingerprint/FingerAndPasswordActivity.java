@@ -35,7 +35,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.victor.baselib.ui.BaseActivity;
+
+import com.victor.baselib.base.BaseActivity;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -52,7 +53,6 @@ import java.security.spec.ECGenParameterSpec;
 
 import javax.inject.Inject;
 
-import dagger.ObjectGraph;
 
 /**
  * Main entry point for the sample, showing a backpack and "Purchase" button.
@@ -71,7 +71,7 @@ public class FingerAndPasswordActivity extends BaseActivity {
     @Inject KeyPairGenerator mKeyPairGenerator;
     @Inject Signature mSignature;
     @Inject SharedPreferences mSharedPreferences;
-    private ObjectGraph mObjectGraph;
+//    private ObjectGraph mObjectGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,14 +166,14 @@ public class FingerAndPasswordActivity extends BaseActivity {
      * @param module for Dagger
      */
     public void initObjectGraph(Object module) {
-        mObjectGraph = module != null ? ObjectGraph.create(module) : null;
+//        mObjectGraph = module != null ? ObjectGraph.create(module) : null;
     }
 
     public void inject(Object object) {
-        if (mObjectGraph == null) {
-            return;
-        }
-        mObjectGraph.inject(object);
+//        if (mObjectGraph == null) {
+//            return;
+//        }
+//        mObjectGraph.inject(object);
     }
 
     /**

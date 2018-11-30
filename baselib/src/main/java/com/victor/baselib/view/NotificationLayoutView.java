@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
-
 import com.victor.baselib.R;
 import com.victor.baselib.font.CommTextView;
 import com.victor.baselib.net.signal.EthernetDrawalbeImp;
