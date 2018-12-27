@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="@dimen/x40"
-        android:layout_marginVertical="@dimen/x20"
+        android:layout_marginHorizontal="@dimen/x30"
+        android:layout_marginVertical="@dimen/x10"
         android:layout_weight="1"
         android:textColor="@color/lg_text_black"
-        android:textSize="@dimen/x48"
+        android:textSize="16sp"
         android:typeface="serif" />
 
 </LinearLayout>

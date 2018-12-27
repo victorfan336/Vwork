@@ -62,6 +62,7 @@ public class MQTTService extends Service {
     private void init() {
         // 服务器地址（协议+地址+端口号）
         String uri = host;
+        // clientId = client.getClientId(); // 需要保持唯一且不变
         client = new MqttAndroidClient(this, uri, clientId);
         // 设置MQTT监听并且接受消息
         client.setCallback(mqttCallback);

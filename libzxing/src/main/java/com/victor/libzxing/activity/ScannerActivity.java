@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.victor.libzxing.R;
 
 /**
@@ -21,6 +22,7 @@ import com.victor.libzxing.R;
  * @Description
  * @date 2018/7/10
  */
+@Route(path = "/scanner/main")
 public class ScannerActivity extends AppCompatActivity implements View.OnClickListener {
 
 

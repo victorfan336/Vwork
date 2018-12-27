@@ -6,9 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.adapter.StringAdapter;
 import com.victor.baselib.base.BaseActivity;
+import com.victor.baselib.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +24,13 @@ public class CoordinatorActionBarActivity extends BaseActivity {
 
     @BindView(R2.id.recycler)
     RecyclerView recyclerView;
+    @Autowired
+    String content;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -39,6 +46,7 @@ public class CoordinatorActionBarActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        ToastUtil.getInstance().showToast(getApplicationContext(), content);
     }
 
     @Override

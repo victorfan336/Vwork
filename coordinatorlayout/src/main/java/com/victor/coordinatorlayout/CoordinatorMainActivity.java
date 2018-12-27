@@ -54,7 +54,7 @@ public class CoordinatorMainActivity extends BaseActivity {
 
     @OnClick(R2.id.action_bar)
     public void onActionBarClicked(View view) {
-        ARouter.getInstance().build("/coordinator/actionbar").navigation();
+        ARouter.getInstance().build("/coordinator/actionbar").withString("content", "参数传递：hello arouter").navigation();
     }
 
     @OnClick(R2.id.tab_layout)

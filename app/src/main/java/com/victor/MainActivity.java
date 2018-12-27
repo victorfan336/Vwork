@@ -13,8 +13,6 @@ import android.view.MenuItem;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.ui.BaseFitsSystemWindowsActivity;
-import com.victor.coordinatorlayout.CoordinatorMainActivity;
-import com.victor.fingerprint.FingerAndPasswordActivity;
 
 import java.lang.reflect.Field;
 
@@ -97,7 +95,6 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_coordinatorlayout:
-//                startActivity(CoordinatorMainActivity.class);
                 ARouter.getInstance().build("/coordinator/main").navigation();
                 break;
             case R.id.nav_fingerprint:

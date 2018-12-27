@@ -22,9 +22,15 @@ import java.util.Date;
 public class XLog {
     //加载使数据过滤
     private static final String sLoaderTag = "loaderTag";
-    public static final String TAG_GU = "TAG_GU----- ";
+    public static final String TAG_GU = "TAG_GU-----";
     // 是否打印log，打包apk要设置为false
     private static final boolean sEnablePrint = true;//DebugVersion set true,for test,
+
+    private static final String LOG_NAME = "vendingmachine.txt";
+
+    public static String getLogName() {
+        return LOG_NAME;
+    }
 
     /**
      * 打印日志时获取当前的程序文件名、行号、方法名 输出格式为：[FileName | LineNumber | MethodName]
@@ -67,19 +73,7 @@ public class XLog {
         }
     }
 
-    public static void w(String tag, String log) {
-        if (sEnablePrint) {
-            Log.w(tag, log);
-        }
-    }
-
-    public static void w(String tag, String log, Exception e) {
-        if (sEnablePrint) {
-            Log.e(tag, log, e);
-        }
-    }
-
-    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm ss");
+    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 将log写入手机SdCard中
@@ -88,41 +82,7 @@ public class XLog {
      * @param append 是否追加log
      */
     public static synchronized void writeLog(final String log, final boolean append) {
-        if (!sEnablePrint) {
-            return;
-        }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                    return;
-                }
-                BufferedWriter writer = null;
-                try {
-                    File file = new File(Environment.getExternalStorageDirectory(), "mayalog.txt");
-                    if (!file.exists()) {
-                        file.createNewFile();
-                    }
-                    StringBuffer date = new StringBuffer();
-                    date.append(format.format(new Date())).append("~~");
-                    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append)));
-                    writer.write(date.toString());
-                    writer.write(log);
-                    writer.write("\n");
-                    writer.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (writer != null) {
-                        try {
-                            writer.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }).start();
+        writeLog(null, log, append);
     }
 
     /**
@@ -133,24 +93,30 @@ public class XLog {
      * @param append 是否追加
      */
     public static synchronized void writeLog(final Exception ex, final String log, final boolean append) {
-        if (!sEnablePrint) {
-            return;
-        }
         new Thread(new Runnable() {
             @Override
             public void run() {
+                if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                    return;
+                }
                 PrintStream writer = null;
-                File file = new File(Environment.getExternalStorageDirectory(), "log.txt");
+                File rootFile = new File(ConstantUtils.ROOT_DIR);
                 try {
+                    if (!rootFile.exists()) {
+                        rootFile.mkdirs();
+                    }
+                    File file = new File(rootFile.getPath(), getLogName());
                     if (!file.exists()) {
                         file.createNewFile();
                     }
                     StringBuffer date = new StringBuffer();
-                    date.append(format.format(new Date())).append("~~");
+                    date.append(format.format(new Date())).append(" ");
                     writer = new PrintStream(new FileOutputStream(file, append), true);
                     writer.print(date.toString());
                     writer.print(log);
-                    ex.printStackTrace(writer);
+                    if (ex != null) {
+                        ex.printStackTrace(writer);
+                    }
                     writer.print("\n");
                     writer.flush();
                 } catch (IOException e) {

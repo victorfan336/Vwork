@@ -11,6 +11,10 @@ import java.io.File;
  */
 public final class ConstantUtils {
 
+    public final static String ROOT_DIR = Environment.getExternalStorageDirectory() + File.separator
+            + "victor";
+
+
     public final static class Common {
         /**
          * 短信

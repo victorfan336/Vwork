@@ -1,6 +1,5 @@
 package com.victor;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
@@ -10,10 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.base.BaseFragment;
-import com.victor.coordinatorlayout.CoordinatorMainActivity;
 import com.victor.coordinatorlayout.R2;
-import com.victor.libzxing.activity.ScannerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,13 +90,13 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
                         .setAction("Yes", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                getActivity().startActivity(new Intent(getActivity(), CoordinatorMainActivity.class));
+                                ARouter.getInstance().build("/coordinator/main").navigation();
                             }
                         })
                         .show();
                 break;
             case R.id.iv_scanner:
-                startActivity(new Intent(getActivity(), ScannerActivity.class));
+                ARouter.getInstance().build("/scanner/main").navigation();
                 break;
         }
     }
