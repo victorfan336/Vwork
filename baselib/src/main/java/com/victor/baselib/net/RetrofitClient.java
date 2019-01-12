@@ -8,25 +8,25 @@ import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
 *
  */
-
 public class RetrofitClient {
 
-    private com.victor.baselib.net.RetrofitService mRetrofitService;
+    private RetrofitService mRetrofitService;
 
 
     private RetrofitClient(OkHttpClient client, Retrofit.Builder builder) {
         if (client != null) {
             builder.client(client);
         }
-        mRetrofitService = builder.build().create(com.victor.baselib.net.RetrofitService.class);
+        mRetrofitService = builder.build().create(RetrofitService.class);
     }
 
-    public com.victor.baselib.net.RetrofitService getService() {
+    public RetrofitService getService() {
         return mRetrofitService;
     }
 
@@ -49,6 +49,7 @@ public class RetrofitClient {
             } else {
                 retrofitBuilder = createBuilder();
                 retrofitBuilder.baseUrl(baseUrl);
+                retrofitBuilder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
                 retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
                 if (map == null) {
                     map = new HashMap<>();
@@ -109,7 +110,7 @@ public class RetrofitClient {
         }
 
         private Retrofit.Builder createBuilder() {
-            return new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create());
+            return new Retrofit.Builder();
         }
 
         public RetrofitClient build() {

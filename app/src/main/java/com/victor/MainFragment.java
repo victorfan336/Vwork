@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,24 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.base.BaseFragment;
+import com.victor.baselib.net.RetrofitUtil;
+import com.victor.baselib.net.bean.ApiArrayResultBean;
+import com.victor.baselib.net.bean.WhosArticleBean;
+import com.victor.baselib.utils.ToastUtil;
 import com.victor.coordinatorlayout.R2;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.victor.baselib.net.RetrofitService.BASE_URL_THEME;
 
 /**
  * @author fanwentao
@@ -72,6 +86,30 @@ public class MainFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initData() {
+        RetrofitUtil.getInstance().setUrl(BASE_URL_THEME).build().getWxWhosArticle()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableObserver<ApiArrayResultBean<WhosArticleBean>>() {
+                    @Override
+                    public void onNext(ApiArrayResultBean<WhosArticleBean> listApiArrayResultBean) {
+                        if (listApiArrayResultBean != null) {
+                            ToastUtil.getInstance().showToast(getActivity().getApplicationContext(), "公众号列表： " + listApiArrayResultBean.getData().size());
+                        } else {
+                            ToastUtil.getInstance().showToast(getActivity().getApplicationContext(), "公众号列表为空");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtil.getInstance().showToast(getActivity().getApplicationContext(), "error: " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                });
     }
 
     @Override

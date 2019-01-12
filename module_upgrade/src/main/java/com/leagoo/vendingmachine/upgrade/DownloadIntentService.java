@@ -32,7 +32,7 @@ import java.io.FileInputStream;
  */
 
 public class DownloadIntentService extends IntentService {
-    private static final String TAG_GU = "DownloadIntentService";
+    private static final String TAG_GU = "tag";
 //    private Notification mNotification;
     private static final int NOTIFY_ID = 1000;
     /**
@@ -67,7 +67,6 @@ public class DownloadIntentService extends IntentService {
             super.handleMessage(msg);
             DownloadInfo bean = (DownloadInfo) msg.obj;
             if (bean == null) {
-                Log.e("victor", "bean == null");
                 return;
             }
             long fileSize = bean.getFileSize();
@@ -82,7 +81,6 @@ public class DownloadIntentService extends IntentService {
                     UpgradeApkInstallUtil.getInstance(getApplicationContext()).installApk(getApplicationContext());
                     cancelNotification();
                     stopSelf();// 停掉服务自身
-                    Log.e("victor", "下载完成后");
                     break;
                 case DownState.DOWNLOAD:
 //                    RemoteViews contentview = mNotification.contentView;
@@ -96,7 +94,7 @@ public class DownloadIntentService extends IntentService {
                 case DownState.NETERROR:
                     cancelNotification();
                     stopSelf();// 停掉服务自身
-                    Log.e("victor", "下载出错");
+                    Log.e(TAG_GU, "下载出错");
                     break;
             }
         }
@@ -114,9 +112,8 @@ public class DownloadIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.e("tag", "onHandleIntent");
         // 判断是否之前就已经下载完成
-        if (UpgradeApkInstallUtil.getInstance(this).isFileDonwloadFinished(this)) {
+        if (UpgradeApkInstallUtil.getInstance(this).isFileDonwloadFinished(this, upgradeMsgBean.getVersionCode())) {
             UpgradeApkInstallUtil.getInstance(this).installApk(this);
             return;
         }
@@ -139,7 +136,6 @@ public class DownloadIntentService extends IntentService {
             // 清除未知的同名apk包
             if (apkFile.exists()) {
                 apkFile.delete();
-                Log.e(TAG_GU, "DownloadIntentService 存在老版本apk，删除，重新下载");
             }
             startDownloadData(null, this, mHandler, upgradeMsgBean);
         } else { // 已经下载过了
@@ -160,50 +156,49 @@ public class DownloadIntentService extends IntentService {
             if (upgradeMsgBean != null && upgradeMsgBean.getVersionCode() > downLoadBean.getVersionCode()) {
                 DaoDownloadManager.getInstance(this).delete(fileName);
                 apkFile.delete();
-                Log.e(TAG_GU, "DownloadIntentService 数据库存版本信息过旧versionCode="
-                        + downLoadBean.getVersionCode()  + "，下载新版本versionCode=" + upgradeMsgBean.getVersionCode()
-                        + "，当前版本versionCode=" + currVersionCode);
-            }
-            // 判断是否是之前未下载完成的文件
-            try {
-                FileInputStream inputStream = new FileInputStream(apkFile);
-                Log.e(TAG_GU, "APK文件大小:" + inputStream.available()
-                        + ", 数据库存在apk已下载大小:" + downLoadBean.getCompleteSize()
-                        + ", 数据库存在apk文件大小:" + downLoadBean.getFileSize());
-                if (inputStream.available() != downLoadBean.getCompleteSize()) {
+                startDownloadData(null, this, mHandler, upgradeMsgBean);
+            } else {
+//            // 判断是否是之前未下载完成的文件
+                try {
+                    FileInputStream inputStream = new FileInputStream(apkFile);
+                    Log.e(TAG_GU, "APK文件大小:" + inputStream.available()
+                            + ", 数据库存在apk已下载大小:" + downLoadBean.getCompleteSize()
+                            + ", 数据库存在apk文件大小:" + downLoadBean.getFileSize());
+                    if (inputStream.available() != downLoadBean.getCompleteSize()) {
 //                    apkFile.delete();
 //                    downLoadBean.setCompleteSize(0);
-                    Log.e(TAG_GU, "APK文件大小和数据库存在apk已下载大小不符，进行校正");
-                    downLoadBean.setCompleteSize(inputStream.available());
+                        Log.e(TAG_GU, "APK文件大小和数据库存在apk已下载大小不符，进行校正");
+                        downLoadBean.setCompleteSize(inputStream.available());
+                    }
+                    inputStream.close();
+                } catch (Exception e) {
+                    Log.e(TAG_GU, "APK文件解析出错：" + e.getMessage());
                 }
-                inputStream.close();
-            } catch (Exception e) {
-
-            }
-            if (upgradeMsgBean != null && upgradeMsgBean.getVersionCode() > currVersionCode) {
-                switch (state) {
-                    case DownState.FINISH:
-                        UpgradeApkInstallUtil.getInstance(this).installApk(this);
-                        break;
-                    case DownState.PAUSE:
-                        break;
-                    case DownState.DOWNLOAD:
-                    case DownState.FILEERROR:
-                    case DownState.NETERROR:
-                    case DownState.LINKING:
-                    default:
-                        if (Tools.isNetAvailable(this)) {
-                            startDownloadData(downLoadBean, this, mHandler, upgradeMsgBean);
-                        }
-                        break;
+                if (upgradeMsgBean != null && upgradeMsgBean.getVersionCode() > currVersionCode) {
+                    switch (state) {
+                        case DownState.FINISH:
+                            UpgradeApkInstallUtil.getInstance(this).installApk(this);
+                            break;
+                        case DownState.PAUSE:
+                            break;
+                        case DownState.DOWNLOAD:
+                        case DownState.FILEERROR:
+                        case DownState.NETERROR:
+                        case DownState.LINKING:
+                        default:
+                            if (Tools.isNetAvailable(this)) {
+                                startDownloadData(downLoadBean, this, mHandler, upgradeMsgBean);
+                            }
+                            break;
+                    }
+                } else {
+                    DaoDownloadManager.getInstance(this).delete(fileName);
+                    if (apkFile.exists()) {
+                        apkFile.delete();
+                    }
+                    UpgradeMsgUtils.clearUpdateMsg(this);
+                    Log.e(TAG_GU, "DownloadIntentService 版本升级消息版本过旧，删除apk和推送消息");
                 }
-            } else {
-                DaoDownloadManager.getInstance(this).delete(fileName);
-                if (apkFile.exists()) {
-                    apkFile.delete();
-                }
-                UpgradeMsgUtils.clearUpdateMsg(this);
-                Log.e(TAG_GU, "DownloadIntentService 版本升级消息版本过旧，删除apk和推送消息");
             }
         }
     }
@@ -266,7 +261,7 @@ public class DownloadIntentService extends IntentService {
 
     @Override
     public void onDestroy() {
-        Log.e("tag", "onDestroy");
+        Log.e(TAG_GU, "onDestroy");
         DownloadManager.getInstance().removeTask(upgradeMsgBean.getDownloadUrl());
         super.onDestroy();
     }

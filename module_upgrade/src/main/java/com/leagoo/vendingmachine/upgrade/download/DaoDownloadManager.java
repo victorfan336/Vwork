@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+
 /**
  * 文件下载数据库管理
  * 
@@ -115,7 +116,7 @@ public class DaoDownloadManager {
 	public synchronized void delete(String fileName) {
 		SQLiteDatabase database = getConnection();
 		try {
-			database.delete(DBHelper.DOWNTABLE, DBHelper.FILE_NAME + "=?",
+			int result = database.delete(DBHelper.DOWNTABLE, DBHelper.FILE_NAME + "=?",
 					new String[] { fileName });
 		} catch (Exception e) {
 			e.printStackTrace();

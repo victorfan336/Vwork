@@ -3,11 +3,6 @@
     package="com.victor.coordinatorlayout">
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         >
         <activity android:name=".CoordinatorMainActivity" android:theme="@style/BlueTheme">
             <!--<intent-filter>-->

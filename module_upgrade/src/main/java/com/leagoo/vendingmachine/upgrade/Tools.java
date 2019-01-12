@@ -5,7 +5,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -84,7 +83,6 @@ public class Tools {
         in.close();
         BigInteger bigInt = new BigInteger(1, digest.digest());
         String md5 = bigInt.toString(16);
-        Log.e("victor", " file md5 = " + md5);
         return md5;
     }
 

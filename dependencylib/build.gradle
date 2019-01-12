@@ -85,14 +85,14 @@ dependencies {
 
     // 图片控制
     api rootProject.ext.dependencies["picasso"]
-    api rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+//    api rootProject.ext.dependencies["glide"]
+//    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 
-    api rootProject.ext.dependencies["fresco"]
-    api rootProject.ext.dependencies["fresco-okhttp3"]
-    api rootProject.ext.dependencies["fresco-animated-gif"]
-    api rootProject.ext.dependencies["fresco-animated-webp"]
-    api rootProject.ext.dependencies["fresco-webpsupport"]
+//    api rootProject.ext.dependencies["fresco"]
+//    api rootProject.ext.dependencies["fresco-okhttp3"]
+//    api rootProject.ext.dependencies["fresco-animated-gif"]
+//    api rootProject.ext.dependencies["fresco-animated-webp"]
+//    api rootProject.ext.dependencies["fresco-webpsupport"]
 
     // 通讯
     api rootProject.ext.dependencies["eventbus"]
@@ -109,4 +109,6 @@ dependencies {
     // 七牛
     api rootProject.ext.dependencies["qiniu-sdk"]
     api rootProject.ext.dependencies["qiniu-dns"]
+
+//    api rootProject.ext.dependencies["background-lib"]
 }

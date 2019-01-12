@@ -2,8 +2,10 @@ package com.leagoo.vendingmachine.upgrade;
 
 import android.content.Context;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.leagoo.vendingmachine.upgrade.download.DaoDownloadManager;
 import com.leagoo.vendingmachine.upgrade.download.DownloadInfo;
 import com.leagoo.vendingmachine.upgrade.download.UpgradeMsgBean;
@@ -86,16 +88,21 @@ public class UpgradeApkInstallUtil {
         return savePath;
     }
 
+    public String getApkObsPath() {
+        return filePath;
+    }
+
     /**
      * 判断apk是否下载完成
      *
      * @return
      */
-    public boolean isFileDonwloadFinished(Context context) {
+    public boolean isFileDonwloadFinished(Context context, int versionCode) {
         File apkRootPath = new File(rootPath);
         File apkFile = new File(rootPath, fileName);
         DownloadInfo downLoadBean = DaoDownloadManager.getInstance(context).getInfos(fileName);
-        if (!apkRootPath.exists() || !apkFile.exists() || downLoadBean.getCompleteSize() == 0) {
+        Log.e("tag", "需要升级都版本：" +  versionCode + "，本地数据库数据：" + new Gson().toJson(downLoadBean));
+        if (downLoadBean == null || !apkRootPath.exists() || !apkFile.exists() || downLoadBean.getCompleteSize() == 0 || versionCode > downLoadBean.getVersionCode()) {
             return false;
         }
 
@@ -108,7 +115,7 @@ public class UpgradeApkInstallUtil {
                         + "， apk文件大小:" + downLoadBean.getFileSize());
                 if (inputStream.available() == downLoadBean.getFileSize()
                         && downLoadBean.getFileSize() == downLoadBean.getCompleteSize()) {
-                    Log.e("victor", "文件已下载，可以直接安装");
+                    Log.e("victor", "文件已下载，直接安装");
                     return true;
                 }
             } catch (Exception e) {
@@ -135,9 +142,10 @@ public class UpgradeApkInstallUtil {
         if (!apkfile.exists()) {
             return;
         }
+        DaoDownloadManager.getInstance(context).delete(fileName);
         UpgradeMsgBean upgradeMsgBean = UpgradeMsgUtils.getUpgradeMsg(context);
         // 校验APK MD5值，判断是否非法文件
-        /*if (upgradeMsgBean != null && !TextUtils.isEmpty(upgradeMsgBean.getFileMd5())
+        if (upgradeMsgBean != null && !TextUtils.isEmpty(upgradeMsgBean.getFileMd5())
             && !upgradeMsgBean.getFileMd5().equalsIgnoreCase("null")) {
             try {
                 String fileMd5 = Tools.getFileMD5(apkfile);
@@ -151,7 +159,7 @@ public class UpgradeApkInstallUtil {
                 e.printStackTrace();
                 Log.e(TAG_GU, "apk md5 校验失败： " + e.getMessage());
             }
-        }*/
+        }
 //        Intent intent = new Intent(Intent.ACTION_VIEW);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

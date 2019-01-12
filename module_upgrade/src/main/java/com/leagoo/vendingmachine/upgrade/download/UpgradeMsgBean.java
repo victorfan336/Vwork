@@ -42,28 +42,28 @@ public class UpgradeMsgBean {
     private int versionCode;
     private String versionName;
 
-    public static UpgradeMsgBean getInstance(Map<String, String> dataMap) {
-        if (dataMap != null && dataMap.size() > 0) {
-            UpgradeMsgBean upgradeMsg = new UpgradeMsgBean();
-            upgradeMsg.setNotificationTitle(dataMap.get("notificationTitle"));
-            upgradeMsg.setNotificationContent(dataMap.get("notificationContent"));
-            upgradeMsg.setNotificationLargeIcon(dataMap.get("notificationLargeIcon"));
-            upgradeMsg.setMsgType(dataMap.get("msgType"));
-            upgradeMsg.setContent(dataMap.get("content"));
-            upgradeMsg.setContentPic(dataMap.get("contentPic"));
+//    public static UpgradeMsgBean getInstance(Map<String, String> dataMap) {
+//        if (dataMap != null && dataMap.size() > 0) {
+//            UpgradeMsgBean upgradeMsg = new UpgradeMsgBean();
+//            upgradeMsg.setNotificationTitle(dataMap.get("notificationTitle"));
+//            upgradeMsg.setNotificationContent(dataMap.get("notificationContent"));
+//            upgradeMsg.setNotificationLargeIcon(dataMap.get("notificationLargeIcon"));
+//            upgradeMsg.setMsgType(dataMap.get("msgType"));
+//            upgradeMsg.setContent(dataMap.get("content"));
+//            upgradeMsg.setContentPic(dataMap.get("contentPic"));
 //            upgradeMsg.setDownloadUrl(dataMap.get("downloadUrl"));
-            upgradeMsg.setDownloadUrl("http://ucdl.25pp.com/fs01/union_pack/Wandoujia_267909_web_seo_baidu_homepage.apk");
-            upgradeMsg.setCancel(dataMap.get("cancel"));
-            upgradeMsg.setConfirm(dataMap.get("confirm"));
-
-            upgradeMsg.setFileMd5(dataMap.get("fileMd5"));
-            upgradeMsg.setVersionCode(Tools.parseString2Int(dataMap.get("versionCode"), 0));
-            upgradeMsg.setVersionName(dataMap.get("versionName"));
-
-            return upgradeMsg;
-        }
-        return null;
-    }
+////            upgradeMsg.setDownloadUrl("http://ucdl.25pp.com/fs01/union_pack/Wandoujia_267909_web_seo_baidu_homepage.apk");
+//            upgradeMsg.setCancel(dataMap.get("cancel"));
+//            upgradeMsg.setConfirm(dataMap.get("confirm"));
+//
+//            upgradeMsg.setFileMd5(dataMap.get("fileMd5"));
+//            upgradeMsg.setVersionCode(Tools.parseString2Int(dataMap.get("versionCode"), 0));
+//            upgradeMsg.setVersionName(dataMap.get("versionName"));
+//
+//            return upgradeMsg;
+//        }
+//        return null;
+//    }
 
     public String getMsgType() {
         return msgType;

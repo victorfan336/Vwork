@@ -6,21 +6,40 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.MenuItem;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.victor.baselib.adapter.ViewPagerAdapter;
 import com.victor.baselib.ui.BaseFitsSystemWindowsActivity;
+import com.victor.baselib.ui.SimpleFragment;
+import com.victor.coordinatorlayout.R2;
+import com.victor.playandroid.activity.WhosArticleFragment;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 public class MainActivity extends BaseFitsSystemWindowsActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private Handler mHandler = new Handler();
 
+    @BindView(R2.id.viewpager)
+    ViewPager viewpager;
+    @BindView(R2.id.tablayout)
+    TabLayout tablayout;
+
+    List<Fragment> mFragments;
+    String[] mTitles = new String[]{
+            "玩安卓", "微博", "相册"
+    };
 
     @Override
     protected int getLayoutId() {
@@ -35,7 +54,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
     @Override
     protected void initView() {
 
-                drawer = findViewById(R.id.drawer);
+        drawer = findViewById(R.id.drawer);
 //        setDrawerLeftEdgeSize(this, drawer, 0.5f);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -48,13 +67,40 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content, new MainFragment()).commit();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.content, new MainFragment()).commit();
+
+        setupViewPager();
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
 
+    }
+
+    private void setupViewPager() {
+        mFragments = new ArrayList<>();
+        for (int i = 0; i < mTitles.length; i++) {
+            List<String> datas = new ArrayList<>();
+            for (int j = 0; j < mTitles.length * 10; j++) {
+                datas.add("item " + j);
+            }
+            Fragment listFragment;
+            if (i == 0) {
+                listFragment = new WhosArticleFragment();
+            } else {
+                listFragment = SimpleFragment.getInstance(mTitles[i], datas);
+            }
+            mFragments.add(listFragment);
+        }
+        // 第二步：为ViewPager设置适配器
+        ViewPagerAdapter adapter =
+                new ViewPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
+
+        viewpager.setAdapter(adapter);
+
+        //  第三步：将ViewPager与TableLayout 绑定在一起
+        tablayout.setupWithViewPager(viewpager);
     }
 
     private void setDrawerLeftEdgeSize (Activity activity, DrawerLayout drawerLayout, float displayWidthPercentage) {
@@ -81,6 +127,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
         } catch (IllegalAccessException e) {
         }
     }
+
     private void closeMenu() {
         mHandler.postDelayed(new Runnable() {
             @Override

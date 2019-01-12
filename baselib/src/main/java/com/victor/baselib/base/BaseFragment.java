@@ -1,5 +1,6 @@
 package com.victor.baselib.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.victor.baselib.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -42,6 +46,32 @@ public abstract class BaseFragment extends Fragment {
         initData();
 
         return view;
+    }
+
+    public void enableBackButton() {
+        View backView = getActivity().findViewById(R.id.title_back);
+        if (backView != null) {
+            backView.setVisibility(View.VISIBLE);
+            backView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().finish();
+                }
+            });
+        }
+    }
+
+    public void enableScanner(final Class clazzType) {
+        View menuView = getActivity().findViewById(R.id.common_tilte);
+        if (menuView != null) {
+            menuView.setVisibility(View.VISIBLE);
+            menuView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().startActivity(new Intent(getActivity(), clazzType));
+                }
+            });
+        }
     }
 
     /**

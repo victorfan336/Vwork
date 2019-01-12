@@ -12,8 +12,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
+import com.google.gson.Gson;
 import com.leagoo.vendingmachine.upgrade.download.DaoDownloadManager;
 import com.leagoo.vendingmachine.upgrade.download.UpgradeMsgBean;
 
@@ -161,7 +161,6 @@ public class UpgradeManager {
     }
 
     private void downloadApk(String apkUrl) {
-        Log.e(TAG_GU, "开始下载");
         Intent intent = new Intent(mContext, DownloadIntentService.class);
         intent.putExtra("apkUrl", apkUrl);
         mContext.startService(intent);
@@ -180,17 +179,17 @@ public class UpgradeManager {
                 return;
             }
             // 没网且没有下载完，则不显示升级框
-            if (!Tools.isNetAvailable(mContext) && !UpgradeApkInstallUtil.getInstance(mContext).isFileDonwloadFinished(mContext)) {
+            if (!Tools.isNetAvailable(mContext) && !UpgradeApkInstallUtil.getInstance(mContext)
+                    .isFileDonwloadFinished(mContext, upgradeMsgBean.getVersionCode())) {
                 return;
             }
             // 判断是否已经安装最新版本
             int versionCode = Tools.getVersionCode(mContext);
             if (versionCode >= upgradeMsgBean.getVersionCode()) {
                 UpgradeMsgUtils.clearUpdateMsg(mContext);
-                File file = new File(UpgradeApkInstallUtil.getInstance(mContext).getApkStorePath(mContext));
+                File file = new File(UpgradeApkInstallUtil.getInstance(mContext).getApkObsPath());
                 if (file.exists()) {
                     file.delete();
-                    Log.e(TAG_GU, "UpgradeManager 删除apk文件");
                 }
                 DaoDownloadManager.getInstance(mContext).delete(file.getName());
             }

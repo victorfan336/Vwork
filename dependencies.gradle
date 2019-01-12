@@ -4,7 +4,7 @@ def retrofitVersion = "2.2.0"
 def okHttpVersion = "3.7.0"
 def stethoVersion = "1.5.0"
 def butterKnifeVersion = "9.0.0-rc2"
-def daggerVersion = "2.11"
+def daggerVersion = "2.20"
 def ormLiteVersion = "4.48"
 def fastJsonVersion = "1.1.60.android"
 def arouterVersion = "1.4.1"
@@ -17,7 +17,7 @@ def frescoVersion = "1.11.0"
 def glideVersion = "4.8.0"
 def picassoVersion = "2.71828"
 def rxandroidVersion = "2.1.0"
-def rxjava2Version = "2.2.4"
+def rxjava2Version = "2.2.5"
 def constraintVersion = "1.1.2"
 def multidexVersion = "1.0.0"
 def leakcannaryVersion = "1.6.1"
@@ -60,7 +60,7 @@ project.ext {
             "okhttp3-logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             //retrofit
             "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            "adapter-rxjava"              : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "adapter-rxjava"              : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             "converter-gson"              : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
             //dagger
             "dagger"                      : "com.google.dagger:dagger:${daggerVersion}",

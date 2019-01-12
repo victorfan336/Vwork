@@ -35,5 +35,6 @@ dependencies {
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     implementation project(':module_upgrade')
-    implementation project(':dependencylib')
+    api project(':dependencylib')
+    implementation project(':bgLib')
 }

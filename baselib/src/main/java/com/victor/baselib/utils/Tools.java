@@ -13,7 +13,6 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.victor.baselib.net.imp.ImpRequest;
 import com.victor.baselib.ui.WebActivity;
 
 import java.io.File;
@@ -172,54 +171,6 @@ public class Tools {
             XLog.e(XLog.TAG_GU, value + " can't cast a int value !");
         }
         return result;
-    }
-
-    public static boolean writeResponseBodyToDisk(InputStream inputStream, String fileSavePath, final ImpRequest request) {
-        OutputStream outputStream = null;
-        if (inputStream == null || TextUtils.isEmpty(fileSavePath)) {
-            return false;
-        }
-        try {
-            File futureStudioIconFile = new File(fileSavePath);
-            if (!futureStudioIconFile.exists()) {
-                if (!futureStudioIconFile.createNewFile()) {
-                    if (request != null) {
-                        request.onFailure();
-                    }
-                    return false;
-                }
-            } else {
-                if (request != null) {
-                    request.onFailure();
-                }
-                return true;
-            }
-            byte[] fileReader = new byte[4096];
-
-            outputStream = new FileOutputStream(futureStudioIconFile);
-
-            while (true) {
-                int read = inputStream.read(fileReader);
-
-                if (read == -1) {
-                    break;
-                }
-                outputStream.write(fileReader, 0, read);
-            }
-            outputStream.flush();
-            if (request != null) {
-                request.onSuccess("success");
-            }
-            return true;
-        } catch (Exception e) {
-            if (request != null) {
-                request.onFailure();
-            }
-            return false;
-        } finally {
-            UtilIO.closeQuietly(inputStream);
-            UtilIO.closeQuietly(outputStream);
-        }
     }
 
     /**

@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':coordinatorlayout', ':fingerprint', ':libLock', ':libzxing', ':dimens', ':mqtt', ':usbdetech', ':module_upgrade', ':dependencylib', ':algorithm'
+include ':app', ':baselib', ':coordinatorlayout', ':fingerprint', ':libLock', ':libzxing', ':dimens', ':mqtt', ':usbdetech', ':module_upgrade', ':dependencylib', ':playandroid', ':bgLib'

@@ -54,7 +54,7 @@ public class UpgradeMsgUtils {
     }
 
     public static void clearUpdateMsg(Context context ) {
-        getSp(context).edit().remove(KEY_NOTIFICATION_UPDATE)
+        getSp(context).edit()/*.remove(KEY_NOTIFICATION_UPDATE)*/
                 .remove(KEY_NOTIFICATION_IS_UPDATE)
                 .commit();
     }

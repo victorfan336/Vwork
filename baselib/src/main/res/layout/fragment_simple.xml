@@ -13,6 +13,7 @@
         android:textColor="@color/colorAccent"
         android:gravity="center_vertical"
         android:singleLine="true"
+        android:visibility="gone"
         android:textSize="18sp" />
 
     <android.support.v7.widget.RecyclerView
