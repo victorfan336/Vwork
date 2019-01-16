@@ -1,11 +1,13 @@
 package com.victor.baselib.utils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,13 +19,11 @@ import com.victor.baselib.ui.WebActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 
 /**
@@ -96,10 +96,10 @@ public class Tools {
      * @param context
      * @param view
      */
-    static public void hideSoftKeyBoard(Context context, View view) {
+    static public boolean hideSoftKeyBoard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        return imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     /**
@@ -107,10 +107,10 @@ public class Tools {
      * @param context
      * @param view
      */
-    public static void showInputSoft(Context context, View view) {
+    public static boolean showInputSoft(Context context, View view) {
         InputMethodManager inputManager =
                 (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.showSoftInput(view, 0);
+        return inputManager.showSoftInput(view, 0);
     }
     /**
      * to check weather should show or hide the soft-keyboard
@@ -258,6 +258,44 @@ public class Tools {
         String md5 = bigInt.toString(16);
         XLog.e(XLog.TAG_GU, " file md5 = " + md5);
         return md5;
+    }
+
+    public static void goSystemSetting(Context context) {
+        Intent intent = null;
+        intent = new Intent(Settings.ACTION_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    public static boolean isEmpty(String content) {
+        if (content == null || content.length() == 0 || content.trim().length() == 0
+                || content.equalsIgnoreCase("null")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 判断某个界面是否在前台
+     *
+     * @param context   Context
+     * @param className 界面的类名
+     * @return 是否在前台显示
+     */
+    public static boolean isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className)) {
+            return false;
+        }
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        for (ActivityManager.RunningTaskInfo taskInfo : list) {
+            XLog.e("tag", "name : " + taskInfo.topActivity.getShortClassName());
+            if (taskInfo.topActivity.getShortClassName().contains(className)) { // 说明它已经启动了
+                XLog.e("tag", className + "在顶部");
+                return true;
+            }
+        }
+        return false;
     }
 
 }

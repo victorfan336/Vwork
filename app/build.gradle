@@ -77,7 +77,7 @@ dependencies {
     implementation project(':fingerprint')
     implementation project(':libzxing')
     implementation project(':dependencylib')
-    implementation project(':playandroid')
+//    implementation project(':playandroid')
 
 //    implementation("com.tencent.tinker:tinker-android-lib:1.9.9") { changing = true }
 //    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.9") { changing = true }

@@ -34,7 +34,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    implementation project(':module_upgrade')
+    api project(':module_upgrade')
     api project(':dependencylib')
-    implementation project(':bgLib')
+    api project(':bgLib')
 }

@@ -1,4 +1,4 @@
-package com.victor.playandroid.activity;
+package com.victor.playandroid.home;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -36,7 +36,8 @@ public class WhosArticleFragment extends BaseMVPFragment {
 
     @Override
     protected void initView(View view) {
-        enableScanner(ScannerActivity.class);
+        enableBackButton(view.findViewById(R.id.common_tilte));
+        enableScanner(view.findViewById(R.id.common_tilte), ScannerActivity.class);
         setupViewPager();
     }
 

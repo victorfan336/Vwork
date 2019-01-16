@@ -1,24 +1,28 @@
 package com.victor.baselib.base;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.victor.baselib.R;
 import com.victor.baselib.utils.ToastUtil;
+import com.victor.baselib.utils.Tools;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    protected Toolbar mToolbar;
-    private TextView mTv_title;
+    private TextView tvTitle;
     private Unbinder unbinder;
 
     @Override
@@ -27,43 +31,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         setStatusBarTextLight(false);
-        initToolBar(setTitle());
+        setTitle(getTitleRes());
         initView();
         initData(savedInstanceState);
     }
 
     protected abstract int getLayoutId();
 
-    protected abstract String setTitle();
+    protected abstract @StringRes int getTitleRes();
 
     protected abstract void initView();
 
     protected abstract void initData(Bundle savedInstanceState);
 
-    public void setTitle(String title) {
-        if (!TextUtils.isEmpty(title)) {
-            mTv_title.setText(title);
+    public void setTitle(@StringRes int titleRes) {
+        tvTitle = findViewById(R.id.title_name);
+        if (tvTitle != null && titleRes != 0) {
+            tvTitle.setText(titleRes);
         }
     }
 
-    protected void initToolBar(String title) {
-        mToolbar = findViewById(R.id.toolbar);
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setTitle("");
-            mTv_title = findViewById(R.id.tv_title);
-            if (!TextUtils.isEmpty(title) && mTv_title != null) {
-                mTv_title.setText(title);
-            }
-        }
-    }
 
     public void startActivity(Class<? extends BaseActivity> clazz) {
         Intent intent = new Intent(this, clazz);
@@ -71,7 +58,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showToast(String content) {
-        ToastUtil.getInstance().showToast(this, content);
+        if (!TextUtils.isEmpty(content)) {
+            ToastUtil.getInstance().showToast(getApplicationContext(), content);
+        }
+    }
+
+    public void showToast(@StringRes int msg) {
+        if (msg != 0) {
+            ToastUtil.getInstance().showToast(getApplicationContext(), msg);
+        }
     }
 
     /**
@@ -87,9 +82,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void enableBackButton() {
-        View backView = findViewById(R.id.title_back);
+    public void enableBackButton(int resId) {
+        ImageView backView = findViewById(R.id.title_back);
         if (backView != null) {
+            backView.setImageResource(resId);
             backView.setVisibility(View.VISIBLE);
             backView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,16 +96,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void enableScanner(final Class clazzType) {
-        View backView = findViewById(R.id.title_menu);
-        if (backView != null) {
-            backView.setVisibility(View.VISIBLE);
-            backView.setOnClickListener(new View.OnClickListener() {
+    public void enableMenu(final Class clazzType, int resId) {
+        ImageView ivMenu = findViewById(R.id.title_menu);
+        if (ivMenu != null) {
+            ivMenu.setImageResource(resId);
+            ivMenu.setVisibility(View.VISIBLE);
+            ivMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(getApplicationContext(), clazzType));
                 }
             });
+        }
+    }
+
+    public void disableMenu() {
+        ImageView ivMenu = findViewById(R.id.title_menu);
+        if (ivMenu != null) {
+            ivMenu.setVisibility(View.GONE);
+        }
+    }
+
+    public void showLoading(boolean show) {
+        View loadingView = findViewById(R.id.title_logding);
+        if (loadingView != null) {
+            if (show) {
+                loadingView.setVisibility(View.VISIBLE);
+            } else {
+                loadingView.setVisibility(View.GONE);
+            }
         }
     }
 

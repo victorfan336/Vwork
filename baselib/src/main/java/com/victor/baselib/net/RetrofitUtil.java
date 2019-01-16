@@ -4,6 +4,7 @@ package com.victor.baselib.net;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.victor.baselib.net.bean.ApiArrayResultBean;
+import com.victor.baselib.net.bean.ApiObjResultBean;
 import com.victor.baselib.net.bean.WhosArticleBean;
 
 import java.util.List;
@@ -23,7 +24,9 @@ public class RetrofitUtil {
     private RetrofitService mRetrofitService;
 
     private RetrofitUtil() {
-
+        setUrl(RetrofitService.BASE_URL_THEME);
+        setConnectTimeout(20000);
+        setTimeout(30000);
     }
 
     public static class RetrofitSingleton {
@@ -82,7 +85,10 @@ public class RetrofitUtil {
 
     public Observable<ApiArrayResultBean<WhosArticleBean>> getWxWhosArticle() {
         return mRetrofitService.getWxWhosArticle();
+    }
 
+    public Observable<ApiObjResultBean> register(String userName, String password, String repassword) {
+        return mRetrofitService.register(userName, password, repassword);
     }
 
 }

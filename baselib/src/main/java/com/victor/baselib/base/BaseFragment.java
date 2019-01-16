@@ -48,29 +48,33 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    public void enableBackButton() {
-        View backView = getActivity().findViewById(R.id.title_back);
-        if (backView != null) {
-            backView.setVisibility(View.VISIBLE);
-            backView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity().finish();
-                }
-            });
+    public void enableBackButton(View titleLayout) {
+        if (titleLayout != null) {
+            View backView = titleLayout.findViewById(R.id.title_back);
+            if (backView != null) {
+                backView.setVisibility(View.VISIBLE);
+                backView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getActivity().finish();
+                    }
+                });
+            }
         }
     }
 
-    public void enableScanner(final Class clazzType) {
-        View menuView = getActivity().findViewById(R.id.common_tilte);
-        if (menuView != null) {
-            menuView.setVisibility(View.VISIBLE);
-            menuView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getActivity().startActivity(new Intent(getActivity(), clazzType));
-                }
-            });
+    public void enableScanner(View titleLayout, final Class clazzType) {
+        if (titleLayout != null) {
+            View menuView = titleLayout.findViewById(R.id.title_menu);
+            if (menuView != null) {
+                menuView.setVisibility(View.VISIBLE);
+                menuView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getActivity().startActivity(new Intent(getActivity(), clazzType));
+                    }
+                });
+            }
         }
     }
 

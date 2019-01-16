@@ -18,7 +18,6 @@ import com.victor.baselib.adapter.ViewPagerAdapter;
 import com.victor.baselib.ui.BaseFitsSystemWindowsActivity;
 import com.victor.baselib.ui.SimpleFragment;
 import com.victor.coordinatorlayout.R2;
-import com.victor.playandroid.activity.WhosArticleFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -47,8 +46,8 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
     }
 
     @Override
-    protected String setTitle() {
-        return "";
+    protected int getTitleRes() {
+        return R.string.app_name;
     }
 
     @Override
@@ -85,12 +84,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
             for (int j = 0; j < mTitles.length * 10; j++) {
                 datas.add("item " + j);
             }
-            Fragment listFragment;
-            if (i == 0) {
-                listFragment = new WhosArticleFragment();
-            } else {
-                listFragment = SimpleFragment.getInstance(mTitles[i], datas);
-            }
+            Fragment listFragment = SimpleFragment.getInstance(mTitles[i], datas);
             mFragments.add(listFragment);
         }
         // 第二步：为ViewPager设置适配器

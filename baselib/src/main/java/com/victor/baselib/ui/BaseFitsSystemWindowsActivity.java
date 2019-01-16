@@ -31,7 +31,7 @@ public abstract class BaseFitsSystemWindowsActivity extends BaseActivity {
             double statusBarHeight = getStatusBarHeight(this);
             lp.height = (int) (statusBarHeight + height);
             view.setPadding(0, (int) statusBarHeight, 0, 0);
-            mToolbar.setLayoutParams(lp);
+//            mToolbar.setLayoutParams(lp);
         }
     }
 

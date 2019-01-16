@@ -2,6 +2,7 @@ package com.victor.baselib.view;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -16,7 +17,7 @@ public class SimpleToolbar extends Toolbar {
     /**
      * 左侧Title
      */
-    private TextView mTxtLeftTitle;
+    private ImageView mTxtLeftTitle;
     /**
      * 中间Title
      */
@@ -58,23 +59,6 @@ public class SimpleToolbar extends Toolbar {
         mTxtMiddleTitle.setTextColor(color);
     }
 
-    //设置title左边文字
-    public void setLeftTitleText(String text) {
-        mTxtLeftTitle.setVisibility(View.VISIBLE);
-        mTxtLeftTitle.setText(text);
-    }
-
-    //设置title左边文字颜色
-    public void setLeftTitleColor(int color) {
-        mTxtLeftTitle.setTextColor(color);
-    }
-
-    //设置title左边图标
-    public void setLeftTitleDrawable(int res) {
-        Drawable dwLeft = ContextCompat.getDrawable(getContext(), res);
-        dwLeft.setBounds(0, 0, dwLeft.getMinimumWidth(), dwLeft.getMinimumHeight());
-        mTxtLeftTitle.setCompoundDrawables(dwLeft, null, null, null);
-    }
     //设置title左边点击事件
     public void setLeftTitleClickListener(OnClickListener onClickListener){
         mTxtLeftTitle.setOnClickListener(onClickListener);
