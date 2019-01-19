@@ -5,12 +5,18 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.victor.baselib.net.bean.ApiArrayResultBean;
 import com.victor.baselib.net.bean.ApiObjResultBean;
+import com.victor.baselib.net.bean.UserInfoBean;
 import com.victor.baselib.net.bean.WhosArticleBean;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -79,16 +85,27 @@ public class RetrofitUtil {
         return this;
     }
 
+    private ObservableTransformer schedulersTransformer() {
+        return new ObservableTransformer() {
+            @Override
+            public ObservableSource apply(Observable upstream) {
+                return upstream.subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
+
     public RetrofitService getRetrofiService() {
         return mRetrofitService;
     }
 
     public Observable<ApiArrayResultBean<WhosArticleBean>> getWxWhosArticle() {
-        return mRetrofitService.getWxWhosArticle();
+        return mRetrofitService.getWxWhosArticle().compose(schedulersTransformer());
     }
 
-    public Observable<ApiObjResultBean> register(String userName, String password, String repassword) {
-        return mRetrofitService.register(userName, password, repassword);
+    public Observable<ApiObjResultBean<UserInfoBean>> register(String userName, String password, String repassword) {
+        return mRetrofitService.register(userName, password, repassword).compose(schedulersTransformer());
     }
 
 }

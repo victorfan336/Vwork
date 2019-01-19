@@ -15,7 +15,7 @@ public class RxBasePresenter<V extends IBaseView, M extends IBaseModel> extends 
 
     @Override
     public void release() {
-        unregisterAll();
+        removeAll();
         super.release();
     }
 
@@ -24,7 +24,7 @@ public class RxBasePresenter<V extends IBaseView, M extends IBaseModel> extends 
      *
      * @param disposable disposable
      */
-    public void register(@NonNull Disposable disposable) {
+    public void add(@NonNull Disposable disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
@@ -36,7 +36,7 @@ public class RxBasePresenter<V extends IBaseView, M extends IBaseModel> extends 
      *
      * @param disposable disposable
      */
-    public void unregister(@NonNull Disposable disposable) {
+    public void remove(@NonNull Disposable disposable) {
         if (compositeDisposable == null) {
             return;
         }
@@ -46,7 +46,7 @@ public class RxBasePresenter<V extends IBaseView, M extends IBaseModel> extends 
     /**
      * Remove all disposables from manager.
      */
-    private void unregisterAll() {
+    private void removeAll() {
         compositeDisposable.dispose();
         compositeDisposable.clear();
     }

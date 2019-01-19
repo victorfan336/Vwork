@@ -22,7 +22,7 @@ import java.util.Date;
 public class XLog {
     //加载使数据过滤
     private static final String sLoaderTag = "loaderTag";
-    public static final String TAG_GU = "TAG_GU-----";
+    public static final String TAG_GU = "Vwork-----";
     // 是否打印log，打包apk要设置为false
     private static final boolean sEnablePrint = true;//DebugVersion set true,for test,
 

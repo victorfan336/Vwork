@@ -13,9 +13,16 @@ import com.alibaba.android.arouter.launcher.ARouter;
  */
 public class BaseApplication extends Application {
 
+    private static Application mContext;
+
+    public static Application getContext() {
+        return mContext;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        mContext = this;
         ARouter.openDebug();
         ARouter.openLog();
         ARouter.init(this);

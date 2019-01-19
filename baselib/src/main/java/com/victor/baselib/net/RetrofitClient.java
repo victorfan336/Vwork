@@ -1,5 +1,9 @@
 package com.victor.baselib.net;
 
+import com.victor.baselib.net.cookie.CookieManger;
+import com.victor.baselib.net.cookie.ReadCookiesInterceptor;
+import com.victor.baselib.net.cookie.SaveCookiesInterceptor;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -117,10 +121,14 @@ public class RetrofitClient {
             if (okBuilder == null) {
                 setConnectTimeout(30*1000);
             }
+            // 添加cookie管理
+            okBuilder.cookieJar(new CookieManger());
             client = okBuilder.build();
             if (retrofitBuilder == null) {
                 retrofitBuilder = createBuilder();
             }
+            client.interceptors().add(new ReadCookiesInterceptor());
+            client.interceptors().add(new SaveCookiesInterceptor());
             return new RetrofitClient(client, retrofitBuilder);
         }
 

@@ -3,6 +3,9 @@ package com.victor.baselib.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by yuchuan
  * DATE 3/22/16
@@ -63,6 +66,18 @@ public class UtilSharedPreferences {
     public static long getLongData(Context context, String key) {
         SharedPreferences preferences = context.getSharedPreferences(ConstantUtils.LgInfoUpload.SHARE_KEY, Context.MODE_PRIVATE);
         return preferences.getLong(key, -1);
+    }
+
+    public static void saveSetData(Context context, String key, Set<String> data) {
+        SharedPreferences preferences = context.getSharedPreferences(ConstantUtils.LgInfoUpload.SHARE_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putStringSet(key, data);
+        editor.apply();
+    }
+
+    public static Set<String> getSetData(Context context, String key) {
+        SharedPreferences preferences = context.getSharedPreferences(ConstantUtils.LgInfoUpload.SHARE_KEY, Context.MODE_PRIVATE);
+        return preferences.getStringSet(key, new HashSet<String>());
     }
 
 }

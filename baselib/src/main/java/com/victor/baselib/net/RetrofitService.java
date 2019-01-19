@@ -2,11 +2,16 @@ package com.victor.baselib.net;
 
 import com.victor.baselib.net.bean.ApiArrayResultBean;
 import com.victor.baselib.net.bean.ApiObjResultBean;
+import com.victor.baselib.net.bean.UserInfoBean;
 import com.victor.baselib.net.bean.WhosArticleBean;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.observers.DisposableObserver;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -33,7 +38,10 @@ public interface RetrofitService {
     @POST("/user/login")
     Observable<Boolean> login(String username, String password);
 
+    @FormUrlEncoded
     @POST("/user/register")
-    Observable<ApiObjResultBean> register(String username, String password, String repassword);
+    Observable<ApiObjResultBean<UserInfoBean>> register(@Field("username") String username,
+                                                                @Field("password") String password,
+                                                                @Field("repassword") String repassword);
 
 }
