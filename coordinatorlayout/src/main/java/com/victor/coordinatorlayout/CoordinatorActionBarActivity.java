@@ -40,9 +40,10 @@ public class CoordinatorActionBarActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return getString(R.string.app_name);
+    protected int getTitleRes() {
+        return R.string.app_name;
     }
+
 
     @Override
     protected void initView() {

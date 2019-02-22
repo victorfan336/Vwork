@@ -25,7 +25,7 @@ class RegisterActivity : BaseFitsSystemWindowsActivity(), IRegisterView {
 
     override fun getTitleRes(): Int = R.string.register
 
-    override fun initView() {
+    override fun initViews() {
         enableBackButton(R.drawable.ic_navigate_before)
         disableMenu()
     }

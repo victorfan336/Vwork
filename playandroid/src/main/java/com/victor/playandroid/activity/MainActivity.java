@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.ViewDragHelper;
 import android.view.MenuItem;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.victor.baselib.adapter.ViewPagerAdapter;
 import com.victor.baselib.ui.BaseFitsSystemWindowsActivity;
 import com.victor.baselib.ui.SimpleFragment;
@@ -20,6 +21,7 @@ import com.victor.playandroid.R;
 import com.victor.playandroid.R2;
 import com.victor.playandroid.home.WhosArticleFragment;
 import com.victor.playandroid.login.LoginActivity;
+import com.victor.playandroid.view.CustomViewListActivity;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -53,8 +55,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
     }
 
     @Override
-    protected void initView() {
-
+    protected void initViews() {
         drawer = findViewById(R.id.drawer);
 //        setDrawerLeftEdgeSize(this, drawer, 0.5f);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
@@ -143,7 +144,12 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_login:
+//                ARouter.getInstance().build("/login/main").navigation();
                 startActivity(LoginActivity.class);
+                break;
+            case R.id.custom_view:
+//                ARouter.getInstance().build("/customview/list").navigation();
+                startActivity(CustomViewListActivity.class);
                 break;
         }
 

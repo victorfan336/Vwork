@@ -67,8 +67,8 @@ public class UcHeadActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "UC Head";
+    protected int getTitleRes() {
+        return R.string.uchead;
     }
 
     @Override

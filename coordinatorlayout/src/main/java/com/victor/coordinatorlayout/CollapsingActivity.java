@@ -30,8 +30,8 @@ public class CollapsingActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "CollapsingActivity";
+    protected int getTitleRes() {
+        return R.string.collapsingActivity;
     }
 
     @Override

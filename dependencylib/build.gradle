@@ -79,7 +79,7 @@ dependencies {
     api rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
-    //ARouter
+    // ARouter
     api rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 

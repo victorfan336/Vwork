@@ -14,6 +14,11 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_note"
             android:title="@string/todo"/>
+
+        <item
+            android:id="@+id/custom_view"
+            android:icon="@drawable/ic_note"
+            android:title="@string/custom_view"/>
     </group>
 
     <item android:title="Communicate">

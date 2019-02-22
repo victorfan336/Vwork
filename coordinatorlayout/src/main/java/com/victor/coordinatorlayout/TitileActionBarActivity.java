@@ -16,8 +16,8 @@ public class TitileActionBarActivity extends CoordinatorActionBarActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "Title Action Bar";
+    protected int getTitleRes() {
+        return R.string.actionbar;
     }
 
 }

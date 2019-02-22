@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         unbinder = ButterKnife.bind(this);
         setStatusBarTextLight(false);
         setTitle(getTitleRes());
-        initView();
+        initViews();
         initData(savedInstanceState);
     }
 
@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract @StringRes int getTitleRes();
 
-    protected abstract void initView();
+    protected abstract void initViews();
 
     protected abstract void initData(Bundle savedInstanceState);
 

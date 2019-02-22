@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">CoordinatorLayout</string>
+    <string name="tab">Tab</string>
+    <string name="actionbar">Title Action Bar</string>
+    <string name="uchead">UC Head</string>
 </resources>

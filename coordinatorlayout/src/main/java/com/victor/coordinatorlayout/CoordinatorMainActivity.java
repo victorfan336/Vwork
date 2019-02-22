@@ -38,8 +38,8 @@ public class CoordinatorMainActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return getString(R.string.app_name);
+    protected int getTitleRes() {
+        return R.string.app_name;
     }
 
     @Override

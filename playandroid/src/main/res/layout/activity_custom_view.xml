@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sample_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.victor.playandroid.view.CircleMenuView
+        android:id="@+id/main_menu"
+        android:layout_width="@dimen/x400"
+        android:layout_height="@dimen/x400"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/y200" />
+
+    <com.victor.playandroid.view.Bezier
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x400" />
+
+
+</LinearLayout>

@@ -66,8 +66,8 @@ public class CoordinatorTabActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "Tab";
+    protected int getTitleRes() {
+        return R.string.tab;
     }
 
     @Override
