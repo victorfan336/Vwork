@@ -29,12 +29,12 @@ public class FingerprintActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "指纹解锁";
+    protected int getTitleRes() {
+        return R.string.app_name;
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
         findViewById(R.id.fingerprint_start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

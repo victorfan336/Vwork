@@ -43,7 +43,7 @@ public class CoordinatorMainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
 
     }
 

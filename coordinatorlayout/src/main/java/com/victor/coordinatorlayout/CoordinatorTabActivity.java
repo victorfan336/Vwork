@@ -71,7 +71,7 @@ public class CoordinatorTabActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
         collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
         collapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
         setupViewPager();

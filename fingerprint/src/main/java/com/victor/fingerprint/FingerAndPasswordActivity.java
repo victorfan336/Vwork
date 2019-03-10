@@ -86,12 +86,12 @@ public class FingerAndPasswordActivity extends BaseActivity {
     }
 
     @Override
-    protected String setTitle() {
-        return "指纹锁";
+    protected int getTitleRes() {
+        return R.string.app_name;
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
         Button purchaseButton = (Button) findViewById(R.id.purchase_button);
         if (!mKeyguardManager.isKeyguardSecure()) {
             // Show a message that the user hasn't set up a fingerprint or lock screen.

@@ -46,7 +46,7 @@ public class CoordinatorActionBarActivity extends BaseActivity {
 
 
     @Override
-    protected void initView() {
+    protected void initViews() {
         ToastUtil.getInstance().showToast(getApplicationContext(), content);
     }
 

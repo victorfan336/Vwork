@@ -72,7 +72,7 @@ public class UcHeadActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
 //        setupViewPager();
         List<String> list = new ArrayList<>();
         for (int j = 0; j < 50; j++) {

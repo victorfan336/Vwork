@@ -51,7 +51,7 @@ public class MainActivity extends BaseFitsSystemWindowsActivity implements Navig
     }
 
     @Override
-    protected void initView() {
+    protected void initViews() {
 
         drawer = findViewById(R.id.drawer);
 //        setDrawerLeftEdgeSize(this, drawer, 0.5f);
